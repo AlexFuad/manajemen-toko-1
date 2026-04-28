@@ -28,10 +28,13 @@ const Login = () => {
     setLoading(true);
 
     try {
+      console.log('Attempting login with:', formData.email);
       const response = await apiClient.post('/login', formData);
+      console.log('Login response:', response.data);
       
       if (response.data.success) {
         const { token, user } = response.data.data;
+        console.log('Login successful, user:', user);
         login(token, user);
         
         // Redirect based on role
@@ -50,6 +53,7 @@ const Login = () => {
         }
       }
     } catch (err) {
+      console.error('Login error:', err);
       if (err.response?.data?.message) {
         setError(err.response.data.message);
       } else if (err.response?.data?.errors) {

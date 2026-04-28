@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
+import ProductsPage from './pages/ProductsPage';
+import CashierPage from './pages/CashierPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useAuth } from './hooks/useAuth';
 
@@ -63,10 +65,19 @@ function App() {
         />
         
         <Route
+          path="/products"
+          element={
+            <ProtectedRoute allowedRoles={['admin']}>
+              <ProductsPage />
+            </ProtectedRoute>
+          }
+        />
+        
+        <Route
           path="/kasir/pos"
           element={
             <ProtectedRoute allowedRoles={['kasir']}>
-              <KasierPOS />
+              <CashierPage />
             </ProtectedRoute>
           }
         />

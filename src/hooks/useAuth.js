@@ -18,6 +18,7 @@ export const useAuth = () => {
   }, []);
 
   const login = (token, userData) => {
+    console.log('Setting auth state with token and user:', userData);
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(userData));
     setIsAuthenticated(true);
